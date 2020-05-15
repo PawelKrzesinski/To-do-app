@@ -26,7 +26,6 @@ body{
 	border-radius: 50%/ 10px 10px 10px 10px;
 	background:	lightskyblue;
 	margin: 0 auto;
-	
 }
 
 .header {
@@ -37,7 +36,7 @@ body{
 	margin: 0;
 	padding: 0;
 	position: relative;
-	width: 24.5em;
+	width: 460px;
 	height: 10em;
 	border-radius: 50%/ 10px 10px 10px 10px;
 	border: 3px solid black;
@@ -45,7 +44,7 @@ body{
 
 #listTop {
 	height: 50px;
-	/* border: 2px solid black; */
+
 }
 
 #pClear {
@@ -60,7 +59,7 @@ body{
 }
 .fas.fa-sync-alt {
 	font-size: 2em;
-	margin: 0;
+	margin: 0 15px 0 0;
 	z-index: 1;
 	color: dodgerblue;
 	float: right;
@@ -96,11 +95,11 @@ body{
 
 
 #list {
-	width: 100% !important;
+	width: 460px;
 	margin: 0 !important;
 	padding: 0;
 	height: 60%;
-	margin-bottom: 10px;
+	margin: 0px auto 10px auto !important;
 	overflow: auto;
 	align-items: center !important;
 	background-color: whitesmoke;
