@@ -17,7 +17,13 @@ if(data) {
 } else {
 	//if data is empty
 	LIST = [];
+}
 
+
+function loadList(array) {
+	array.forEach(item => {
+		addToDo(item.name, item.id, item.done, item.trash);
+	})
 }
 
 
@@ -75,6 +81,37 @@ function addToDo(toDo, id, done, trash) {
 	list.insertAdjacentHTML(position, text);		
 }
 
+// complete to-do
+function jobComplete(element) {
+	element.classList.toggle(check);
+	element.classList.toggle(uncheck);
+	element.parentNode.querySelector(".description").classList.toggle(lineThrough);
+	LIST[element.id].done = LIST[element.id].done ? false : true;
+}	
+
+// remove to-do
+function removeToDo(element, i) {	
+	element.parentNode.remove();
+	LIST = LIST.filter(element => element.id !== event.target.id);
+	localStorage.setItem('TODO', JSON.stringify(LIST));
+	console.log(LIST);
+	return LIST;
+
+}
+
+// click listener for job complete and job delete
+list.addEventListener('click', e => {
+	const element = e.target;
+	if(e.target.className == "fas fa-trash-alt" ){
+		removeToDo(element);
+	}else if(e.target.className == "far fa-circle") {
+		jobComplete(element);
+	}else if(e.target.className == "far fa-check-circle"){
+	 	jobComplete(element);
+	}
+	}
+)
+
 //add a task with "enter" key
 document.addEventListener("keyup", (event) => {
 	if(event.keyCode == 13){
@@ -103,6 +140,28 @@ clear.addEventListener('click', () => {
 	location.reload();
 	}
 )
+
+// add a task by clicking the plus icon
+document.getElementById("addButton").addEventListener('click', (event) =>{
+	const toDo = input.value;	
+	if(toDo) {
+		//gen id
+		const id = uuidv4();
+		addToDo(toDo, id, false, false);
+		LIST.push(
+			{
+				name: toDo,
+				id: id,
+				done: false,
+				trash: false
+			}
+			
+		);
+		localStorage.setItem('TODO', JSON.stringify(LIST));
+		input.value = '';
+		
+	}
+})
 
 // add a task by clicking the plus icon
 document.getElementById("addButton").addEventListener('click', (event) =>{
