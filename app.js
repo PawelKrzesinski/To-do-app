@@ -162,26 +162,3 @@ document.getElementById("addButton").addEventListener('click', (event) =>{
 		
 	}
 })
-
-// add a task by clicking the plus icon
-document.getElementById("addButton").addEventListener('click', (event) =>{
-	const toDo = input.value;	
-	if(toDo) {
-		//gen id
-		const id = uuidv4();
-		addToDo(toDo, id, false, false);
-		LIST.push(
-			{
-				name: toDo,
-				id: id,
-				done: false,
-				trash: false
-			}
-			
-		);
-		localStorage.setItem('TODO', JSON.stringify(LIST));
-		input.value = '';
-		
-	}
-})
-
