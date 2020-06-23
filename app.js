@@ -43,7 +43,7 @@ function currentTime () {
 	let year = date.getFullYear();
 	let month = date.getMonth()+1;
 	let day = date.getDate();
-	month = updateTimeAndDate(month);		// instead i could do:  let month = `${date.getMonth()+1}`.padStart(2, "0");
+	month = updateTimeAndDate(month); // instead i could do:  let month = `${date.getMonth()+1}`.padStart(2, "0");
 	day = updateTimeAndDate(day);	// instead i could do: let day = `${date.getDate()}`.padStart(2, "0");
 	let dayOfTheWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 	let weekDay = dayOfTheWeek[date.getDay()];
@@ -60,7 +60,10 @@ function updateTimeAndDate(k) {
 
 currentTime();
 
+
+
 function addToDo(toDo, id, done, trash) {
+	
 	// if trash is true do not execute the code below
 	if (trash) {return ;}
 	const DONE = done ? check : uncheck;
@@ -68,9 +71,9 @@ function addToDo(toDo, id, done, trash) {
 	
 	const text =`
 	<li class="item">
-		<i class="far ${DONE}"  id='${id}'></i>
+		<i class="far ${DONE}" id='${id}'></i>
 			<div class="description ${LINE} wrap">${toDo}</div>
-		<i class="fas fa-trash-alt"  id='${id}'></i>
+		<i class="fas fa-trash-alt" id='${id}'></i>
 	</li>`;
 	const position = "beforeend";
 	list.insertAdjacentHTML(position, text);		
