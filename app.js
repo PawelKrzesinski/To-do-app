@@ -9,7 +9,7 @@ const lineThrough = "lineThrough";
 
 //get the item from the local storage
 let data = localStorage.getItem('TODO');
-
+let LIST = [];
 //check if data is not empty
 if(data) {
 	LIST = JSON.parse(data)
