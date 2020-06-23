@@ -7,7 +7,8 @@
 body{
 	background-color: #1B2631;
 	text-align: center;
-	
+	margin: 0;
+  padding: 0;
 }
   
 .title {
@@ -37,7 +38,7 @@ body{
 	padding: 0;
 	position: relative;
 	width: 460px;
-	height: 10em;
+	height: 100%;
 	border-radius: 50%/ 10px 10px 10px 10px;
 	border: 3px solid black;
 }
@@ -104,8 +105,10 @@ body{
 	align-items: center !important;
 	background-color: whitesmoke;
 }
-.footer {
-	height: 5em;
+.appBottom {
+	height: 10%;
+  min-height: 5em;
+  margin-bottom: 25px;
 }
 
 .item {
