@@ -10,16 +10,7 @@ body{
 	margin: 0;
   padding: 0;
 }
-  
-.title {
-	display: block;
-	text-align: center;
-	color: yellow;
-	background-color: black;
-	width: auto;
-	margin-right: auto;
-	margin-left: auto;
-}
+
 .app {
 	width: 500px;
 	height: auto;
@@ -87,7 +78,7 @@ body{
 	font-weight: 800;
 	z-index: 3;
 	color:gold;
-	font-family: 'Roboto', sans-serif;  /* Google font @import url('https://fonts.googleapis.com/css?family=Orbitron'); */ 				
+	font-family: 'Roboto', sans-serif;
 	position: relative;
 	top: -80px;
 	right: -140px; 
@@ -169,7 +160,6 @@ i {
 	white-space: -o-pre-wrap;   /* Opera 7 */    
 	word-wrap: break-word;      /* IE */
  }
-
 .fas.fa-plus-circle {
 	margin: 5px 5px;
 	font-size: 70px;
