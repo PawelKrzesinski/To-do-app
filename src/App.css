@@ -1,0 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+html,body, #root {
+  background-color: rgb(31, 143, 255);
+  height: 100%;
+  width: 100%;
+}
+.App {
+  height: 100%;
+}
