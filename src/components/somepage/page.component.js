@@ -1,52 +1,68 @@
 
 import { useState, useEffect, useRef } from 'react'
-import { Card, CardContent, CardActions, Divider, ListItem, List, ListItemText, Typography } from "@mui/material";
+import { Card, CardContent, CardActions, Divider, ListItem, List, ListItemText, Typography, Icon } from "@mui/material";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import './page.component.css'
 import { createTheme } from "@mui/material/styles";
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import { v4 as uuidv4 } from 'uuid';
 
 
 export default function MainPage() {
 
-  const [todosState, setTodosState] = useState({
-    todo: '',
+  const todosInitialState = {
+    todo: {
+      name: '',
+      id: 0,
+    },
     todosArr: [],
     isAdded: false
-  })
-
-
-
-  // const [todosState, setTodosState] = useState([])
-  // const [isTodoAdded, setIsTodoAdded] = useState(false)
+  }
+  const [todosState, setTodosState] = useState(todosInitialState)
   const todoInput = useRef();
+  const [cleaned, setCleaned] = useState(true)
 
   useEffect(() => {
+    console.log('1. hook triggered')
     if(!todosState.isAdded) return;
     const addTodo = (e) => {
-      setTodosState({...todosState, todosArr: [...todosState.todosArr, todosState.todo], isAdded: false})
-      clearInput();
+      setTodosState({...todosState, todosArr: 
+        [...todosState.todosArr, 
+          { name: todosState.todo.name,
+            id: uuidv4()
+          }
+        ], 
+        isAdded: false})
+        setCleaned(false)
+    }
+    const clearInput = () => {
+      console.log(!cleaned, 'derp')
+      if(!cleaned)
+      setTodosState({...todosState, todo: { name: '' }, isAdded: false})
+      todoInput.current.value = '';
+      setCleaned(true)
     }
     addTodo();
-  },[todosState])
+    clearInput();
+  },[todosState, cleaned])
 
 
   const handleInput = (e) => {
-    setTodosState({...todosState, todo: e.target.value})
+    setTodosState({...todosState, todo: {name: e.target.value }})
   }
 
   const addToDo = (e) => {
     e.preventDefault();
-    setTodosState({...todosState, isAdded: true})
+    setTodosState({...todosState, isAdded: true}) 
   }
 
   const theme = createTheme({
     spacing:  [0, 4, 8, 12, 16, 20, 24, 28, 32],
   })
 
-  const clearInput = () => {
-    todoInput.current.value = '';
-  }
+
 
 
 
@@ -55,19 +71,20 @@ export default function MainPage() {
 
   return (
     <div className="content">
-      <Card sx={{ minWidth: 450, maxWidth: 450, height: 850, backgroundColor:"rgb(175, 175, 175)", display: 'flex', flexDirection: 'column', boxShadow: 2, borderRadius: 5 }}>
-        <CardContent sx={{ backgroundColor: 'white', mt: 2, alignSelf: 'center', minWidth: 400, '& .MuiList-root': { mx: 0}}}>
+      <Card sx={{ minWidth: 450, maxWidth: 450, height: 850, backgroundColor:"rgb(200, 200, 200)", display: 'flex', flexDirection: 'column', boxShadow: 2, borderRadius: 5}}>
+        <CardContent sx={{ backgroundColor: 'white', mt: 3, alignSelf: 'center', minWidth: 400, '& .MuiList-root': { mx: 0}}}>
           <Typography sx={{ textAlign:'center', background: 'white' }} variant='h4'>Today Tasks</Typography>
-          {/* <Divider sx={{ background: 'white', minWidth: 400}}>
-            <Divider sx={{ background: 'gray', minWidth: 300, maxWidth: '80%', mx: 'auto' }}></Divider>
-          </Divider> */}
-          <List sx={{ backgroundColor: 'gainsboro', minWidth: 350, minHeight: 650, overflow: 'scroll', border: '1px solid gray' }} className='todos-list'>
+          <List sx={{ backgroundColor: 'gainsboro', minWidth: 350, minHeight: 650, overflow: 'scroll', border: '1px solid gray', pt: 0 }} className='todos-list'>
             {
               todosState.todosArr.map((x, index) => {
                 return (
-                  <div>
-                    <ListItem key={index}>
-                      <ListItemText primary={x} sx={{  }}></ListItemText>
+                  <div key={index}>
+                    <ListItem sx={{p: 0 }}>
+                      <ListItemText primary={x.name} sx={{p: 1, my: '5px', minHeight: 34,}}></ListItemText>
+                      {/* <Button variant="outlined" startIcon={<DeleteIcon />}></Button> */}
+                      <IconButton aria-label="delete" size='large' sx={{ borderRadius: 0}} >
+                        <DeleteIcon />
+                      </IconButton>
                     </ListItem>
                     <Divider sx={{ background: 'black', width: 1 }}></Divider>
                   </div>
