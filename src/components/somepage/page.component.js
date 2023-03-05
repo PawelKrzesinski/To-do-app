@@ -8,7 +8,8 @@ import { createTheme } from "@mui/material/styles";
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import { v4 as uuidv4 } from 'uuid';
-
+import DoneIcon from '@mui/icons-material/Done';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 export default function MainPage() {
 
@@ -18,6 +19,7 @@ export default function MainPage() {
       id: 0,
     },
     todosArr: [],
+    completedTodos: [],
     isAdded: false,
   }
   const [todosState, setTodosState] = useState(todosInitialState)
@@ -27,9 +29,7 @@ export default function MainPage() {
     
     if(!todosState.isAdded) return;
     const addTodo = () => {
-
       if(todosState.todo.name.length < 1) return setTodosState({...todosState, isAdded: false});
-
       return setTodosState({...todosState, todosArr: 
         [...todosState.todosArr, 
           { name: todosState.todo.name,
@@ -77,6 +77,17 @@ export default function MainPage() {
     e.preventDefault();
     setTodosState({...todosState, todosArr: []}) 
   }
+
+  const completeOne = (e, todoToComplete) => {
+    e.preventDefault();
+    const todos = todosState.todosArr.filter((todo) => todo.id !== todoToComplete.id)
+    setTodosState({...todosState, todosArr: todos, completedTodos: [...todosState.completedTodos, todoToComplete]}) 
+  }
+
+  const completeAll = (e) => {
+    e.preventDefault();
+    setTodosState({...todosState,  completedTodos: [...todosState.completedTodos, todosState.todosArr], todosArr: []}) 
+  }
   const theme = createTheme({
     spacing:  [0, 4, 8, 12, 16, 20, 24, 28, 32],
   })
@@ -107,16 +118,19 @@ export default function MainPage() {
           }
         }>
           <Typography sx={{ textAlign:'center', background: 'white' }} variant='h4'>Today Tasks</Typography>
-          <Button sx=
-          {
-            { 
-              margin: theme.spacing(1, 0, 2, 'auto'), 
-              display: 'flex' 
-            }
-          } 
-          variant="contained"
-          onClick={(e) => removeAll(e)
-          }>Clear All</Button>
+          <div className='buttons-container'>
+
+            <Button sx={{ margin: theme.spacing(1, 1 )}} 
+              variant="contained"
+              onClick={(e) => completeAll(e)
+            }>Complete All</Button>
+
+            <Button sx={{ margin: theme.spacing(1, 0, 1, 1 )}} 
+              variant="contained"
+              onClick={(e) => removeAll(e)
+            }>Clear All</Button>
+
+          </div>
           <List sx=
           {
             { 
@@ -136,11 +150,19 @@ export default function MainPage() {
                     <ListItem sx={{p: 0 }}>
                       <ListItemText primary={todo.name} sx={{ p: 1, my: '5px', minHeight: 34 }}></ListItemText>
                       <IconButton 
+                      aria-label='complete' 
+                      size='large' 
+                      sx={{ borderRadius: 0, color: 'rgb(0, 180, 0)'}} 
+                      onClick={(e) => completeOne(e, todo)
+                      }>
+                        <DoneIcon />
+                      </IconButton>
+                      <IconButton 
                         aria-label="delete" 
                         size='large' 
                         sx={{ borderRadius: 0}} 
-                        onClick={(e) => removeOne(e, todo)} 
-                      >
+                        onClick={(e) => removeOne(e, todo)
+                      }>
                         <DeleteIcon />
                       </IconButton>
                     </ListItem>
