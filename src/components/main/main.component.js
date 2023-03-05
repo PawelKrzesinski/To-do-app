@@ -67,29 +67,8 @@ export default function MainPage() {
 
   return (
     <div className="content">
-      <Card sx={
-        { 
-          position: 'relative',
-          width: 450, 
-          height: 850, 
-          backgroundColor:"rgb(200, 200, 200)", 
-          display: 'flex', flexDirection: 'column',
-          boxShadow: 2, 
-          borderRadius: 5,
-        }
-      }>
-        <CardContent sx=
-        {
-          { 
-            backgroundColor: 'white', 
-            margin: theme.spacing(5, 5, 3), 
-            borderRadius: 2, 
-            alignSelf: 'center', 
-            minWidth: 400, 
-            minHeight: 700, 
-            '& .MuiList-root': { mx: 0}
-          }
-        }>
+      <Card sx={{ position: 'relative', width: 450, height: 850, backgroundColor:"rgb(200, 200, 200)", display: 'flex', flexDirection: 'column', boxShadow: 2, borderRadius: 5 }}>
+        <CardContent sx={{ backgroundColor: 'white', margin: theme.spacing(5, 5, 3), borderRadius: 2, alignSelf: 'center', minWidth: 400, minHeight: 700, '& .MuiList-root': { mx: 0}}}>
         <Typography sx={{ textAlign:'center', background: 'white' }} variant='h4'>Today Tasks</Typography>
         <div className='buttons-container'>
           <Button sx={{ margin: theme.spacing(1, 1 )}} variant="contained" onClick={(e) => completeAll(e)}>Complete All</Button>
