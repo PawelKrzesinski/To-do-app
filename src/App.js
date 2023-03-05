@@ -1,10 +1,10 @@
-import MainPage from './components/main/main.component';
+import TodoApp from './components/todo-app/todo-app.component';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <MainPage></MainPage>
+      <TodoApp></TodoApp>
     </div>
   );
 }

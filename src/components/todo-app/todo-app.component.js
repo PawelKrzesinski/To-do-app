@@ -1,8 +1,8 @@
 
 import { React, useState, useEffect, useRef } from 'react'
-import { Card, CardContent, CardActions, Divider, ListItem, List, ListItemText, Typography, Icon } from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import Button from '@mui/material/Button';
-import './main.component.css'
+import './todo-app.component.css'
 import { createTheme } from "@mui/material/styles";
 
 import { v4 as uuidv4 } from 'uuid';
@@ -10,7 +10,7 @@ import DoneAllIcon from '@mui/icons-material/DoneAll';
 import TodoList from '../todo-list.component/todo-list.component';
 import TodoInput from '../todo-input.component/todo-input.component';
 
-export default function MainPage() {
+export default function TodoApp() {
 
   const todosInitialState = {
     todo: {
