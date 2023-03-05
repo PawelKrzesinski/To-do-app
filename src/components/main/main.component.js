@@ -3,13 +3,12 @@ import { React, useState, useEffect, useRef } from 'react'
 import { Card, CardContent, CardActions, Divider, ListItem, List, ListItemText, Typography, Icon } from "@mui/material";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import './page.component.css'
+import './main.component.css'
 import { createTheme } from "@mui/material/styles";
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
+
 import { v4 as uuidv4 } from 'uuid';
-import DoneIcon from '@mui/icons-material/Done';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
+import TodoList from '../todo-list.component/todo-list.component';
 
 export default function MainPage() {
 
@@ -67,22 +66,12 @@ export default function MainPage() {
     }
   }
 
-  const removeOne = (e, todoToDelete) => {
-    e.preventDefault();
-    const todos = todosState.todosArr.filter((todo) => todo.id !== todoToDelete.id)
-    setTodosState({...todosState, todosArr: todos}) 
-  }
   
   const removeAll = (e) => {
     e.preventDefault();
     setTodosState({...todosState, todosArr: []}) 
   }
 
-  const completeOne = (e, todoToComplete) => {
-    e.preventDefault();
-    const todos = todosState.todosArr.filter((todo) => todo.id !== todoToComplete.id)
-    setTodosState({...todosState, todosArr: todos, completedTodos: [...todosState.completedTodos, todoToComplete]}) 
-  }
 
   const completeAll = (e) => {
     e.preventDefault();
@@ -117,61 +106,20 @@ export default function MainPage() {
             '& .MuiList-root': { mx: 0}
           }
         }>
-          <Typography sx={{ textAlign:'center', background: 'white' }} variant='h4'>Today Tasks</Typography>
-          <div className='buttons-container'>
+        <Typography sx={{ textAlign:'center', background: 'white' }} variant='h4'>Today Tasks</Typography>
+        <div className='buttons-container'>
 
             <Button sx={{ margin: theme.spacing(1, 1 )}} 
-              variant="contained"
-              onClick={(e) => completeAll(e)
-            }>Complete All</Button>
+            variant="contained"
+            onClick={(e) => completeAll(e)
+          }>Complete All</Button>
 
-            <Button sx={{ margin: theme.spacing(1, 0, 1, 1 )}} 
-              variant="contained"
-              onClick={(e) => removeAll(e)
-            }>Clear All</Button>
-
-          </div>
-          <List sx=
-          {
-            { 
-              backgroundColor: 'gainsboro', 
-              minWidth: 350, 
-              height: 625, 
-              overflow: 'scroll', 
-              border: '1px solid gray', 
-              pt: 0 
-            }
-          } 
-            className='todos-list'>
-            {
-              todosState.todosArr.map((todo, index) => {
-                return (
-                  <div key={index}>
-                    <ListItem sx={{p: 0 }}>
-                      <ListItemText primary={todo.name} sx={{ p: 1, my: '5px', minHeight: 34 }}></ListItemText>
-                      <IconButton 
-                      aria-label='complete' 
-                      size='large' 
-                      sx={{ borderRadius: 0, color: 'rgb(0, 180, 0)'}} 
-                      onClick={(e) => completeOne(e, todo)
-                      }>
-                        <DoneIcon />
-                      </IconButton>
-                      <IconButton 
-                        aria-label="delete" 
-                        size='large' 
-                        sx={{ borderRadius: 0}} 
-                        onClick={(e) => removeOne(e, todo)
-                      }>
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItem>
-                    <Divider sx={{ background: 'black', width: 1 }}></Divider>
-                  </div>
-                  )
-              })
-            }
-          </List>
+          <Button sx={{ margin: theme.spacing(1, 0, 1, 1 )}} 
+            variant="contained"
+            onClick={(e) => removeAll(e)
+          }>Clear All</Button>
+        </div>  
+        <TodoList todosState={todosState} setTodosState={setTodosState} />
         </CardContent>
         <CardActions sx={
           { 
