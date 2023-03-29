@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import { Card, CardContent, Typography } from "@mui/material";
 import Button from '@mui/material/Button';
 import './todo-app.component.css'
-import { createTheme } from "@mui/material/styles";
 import { v4 as uuidv4 } from 'uuid';
 import TodoInput from '../todo-input/todo-input.component';
 import TodoTabs from '../todo-tabs/todo-tabs.component';
@@ -80,7 +79,7 @@ export default function TodoApp() {
     <div className="content">
       <Card sx={{ position: 'relative', width: 450, height: 850, backgroundColor:"rgb(200, 200, 200)", display: 'flex', flexDirection: 'column', boxShadow: 2, borderRadius: 5 }}>
         <CardContent sx={{ backgroundColor: 'white', margin: themes.spacing(5, 5, 3), borderRadius: 2, alignSelf: 'center', minWidth: 400, minHeight: 700, '& .MuiList-root': { mx: 0}}}>
-        <Typography sx={{ textAlign:'center', background: 'white' }} variant='h4'>Today Tasks</Typography>
+        <Typography sx={{ textAlign:'center', background: 'white', fontSize: '28px' }} >Today Tasks</Typography>
         <div className='buttons-container'>
           <Button sx={{ margin: themes.spacing(1, 1 )}} variant="contained" onClick={(e) => completeAll(e)}>Complete All</Button>
           <Button sx={{ margin: themes.spacing(1, 0, 1, 1 )}} variant="contained" onClick={(e) => removeAll(e)}>Clear All</Button>

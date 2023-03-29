@@ -4,8 +4,11 @@ import Tab from '@mui/material/Tab';
 import TodoList from '../todo-list/todo-list.component';
 import Box from '@mui/material/Box';
 import './todo-tabs.component.css'
+import * as themeProvider from '../theme-provider.component';
+import { Divider } from '@mui/material';
+
 export default function TodoTabs(props) {
-  
+  const themes = themeProvider.spacing;
   const [value, setValue] = useState(0);
 
   function tabControl(index) {
@@ -30,24 +33,32 @@ export default function TodoTabs(props) {
         {...other}
       >
         {value === index && (
-          <Box sx={{ p: 3 }}>{children}</Box>
+          <Box sx={{ padding: themes.spacing(0) }}>{children}</Box>
         )}
       </div>
     );
   }
 
   return (
-    <div className='tabs-container'>
-      <Tabs value={value} onChange={handleChange} sx={{width: 350, margin: 'auto', background: 'Gainsboro'}}>
-        <Tab label="Ongoing" {...tabControl(0)}></Tab>
-        <Tab label="Completed" {...tabControl(1)}></Tab>
+    <Box>
+
+      <Tabs value={value} onChange={handleChange} sx={{
+        width: 1,
+        background: 'Gainsboro',
+        borderTopLeftRadius: '8px',
+        borderTopRightRadius: '8px',
+        }}>
+        <Tab label="Ongoing" {...tabControl(0)} sx={{ width: '50%'}}></Tab>
+        <Tab label="Completed" {...tabControl(1)} sx={{ width: '50%'}}></Tab>
       </Tabs>
-      <TabPanel value={value} index={0} sx={{'& .MuiBox-root':{ padding: 0 }}}>
+      <TabPanel value={value} index={0}>
+        <Divider sx={{ background: 'black' }}></Divider>
         <TodoList todosState={props.todosState} setTodosState={props.setTodosState} todos={props.todosState.todosArr} />
       </TabPanel>
       <TabPanel value={value} index={1}>
+        <Divider sx={{ background: 'black' }}></Divider>
         <TodoList todosState={props.todosState} setTodosState={props.setTodosState} todos={props.todosState.completedTodos} />
       </TabPanel>
-    </div>
+    </Box>
   )
 }

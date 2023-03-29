@@ -17,4 +17,5 @@ input:focus {
 .buttons-container{
   display: flex;
   justify-content: flex-end;
+  display: none;
 }
