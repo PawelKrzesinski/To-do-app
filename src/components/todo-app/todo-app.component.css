@@ -13,9 +13,3 @@ input:focus {
   outline: none !important;
 
 }
-
-.buttons-container{
-  display: flex;
-  justify-content: flex-end;
-  display: none;
-}

@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 import TodoInput from '../todo-input/todo-input.component';
 import TodoTabs from '../todo-tabs/todo-tabs.component';
 import * as themeProvider from '../theme-provider.component';
+import HamburgerMenu from '../todo-hamburger-menu/todo-hamburger-menu.component';
+import { Box } from '@mui/system';
 export default function TodoApp() {
   const themes = themeProvider.spacing;
   const todosInitialState = {
@@ -51,39 +53,16 @@ export default function TodoApp() {
     todoInput.current.value = '';
   }
   
-  const removeAll = (e) => {
-    e.preventDefault();
-    setTodosState({...todosState, todosArr: []}) 
-  }
-  
-  const completeAll = (e) => {
-    e.preventDefault();
-    const ongoingTodos = todosState.todosArr.map((todo) =>{ 
-      todo = {
-        ...todo,
-        completed: true
-      }
-      return todo;
-    });
-    setTodosState({
-      ...todosState,
-      completedTodos: [
-        ...todosState.completedTodos,
-        ...ongoingTodos
-      ],
-      todosArr: []
-    }) 
-  }
+
 
   return (
     <div className="content">
       <Card sx={{ position: 'relative', width: 450, height: 850, backgroundColor:"rgb(200, 200, 200)", display: 'flex', flexDirection: 'column', boxShadow: 2, borderRadius: 5 }}>
         <CardContent sx={{ backgroundColor: 'white', margin: themes.spacing(5, 5, 3), borderRadius: 2, alignSelf: 'center', minWidth: 400, minHeight: 700, '& .MuiList-root': { mx: 0}}}>
-        <Typography sx={{ textAlign:'center', background: 'white', fontSize: '28px' }} >Today Tasks</Typography>
-        <div className='buttons-container'>
-          <Button sx={{ margin: themes.spacing(1, 1 )}} variant="contained" onClick={(e) => completeAll(e)}>Complete All</Button>
-          <Button sx={{ margin: themes.spacing(1, 0, 1, 1 )}} variant="contained" onClick={(e) => removeAll(e)}>Clear All</Button>
-        </div> 
+        <Box sx={{ display: 'flex', justifyContent: 'center', width: 1, minWidth: 350}}>
+          <Typography sx={{ textAlign:'center', background: 'white', fontSize: '28px' }} >Today Tasks</Typography>
+          <HamburgerMenu todosState={todosState} setTodosState={setTodosState}></HamburgerMenu>  
+        </Box>
         <TodoTabs todosState={todosState} setTodosState={setTodosState}/>
         </CardContent>
         <TodoInput todosState={todosState} setTodosState={setTodosState} todoInput={todoInput}/>
