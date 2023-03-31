@@ -48,7 +48,7 @@ export default function TodoInput(props) {
             '& .MuiInputBase-input': {
               padding: 1,
               height: 34,
-              backgroundColor: '#50555c',
+              backgroundColor: 'gainsboro',
               borderTopLeftRadius: 5,
               borderBottomLeftRadius: 5,
             },
