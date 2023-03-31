@@ -61,7 +61,7 @@ export default function HamburgerMenu(props) {
         onClick={handleClick}
         sx={{}}
       >
-        <MenuIcon fontSize='large'></MenuIcon>
+        <MenuIcon fontSize='large' sx={{}}></MenuIcon>
       </Button>
       <Menu
         id="basic-menu"

@@ -3,7 +3,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import TodoList from '../todo-list/todo-list.component';
 import Box from '@mui/material/Box';
-import './todo-tabs.component.css'
 import * as themeProvider from '../theme-provider.component';
 import { Divider } from '@mui/material';
 
@@ -33,23 +32,17 @@ export default function TodoTabs(props) {
         {...other}
       >
         {value === index && (
-          <Box sx={{ padding: themes.spacing(0) }}>{children}</Box>
+          <Box>{children}</Box>
         )}
       </div>
     );
   }
 
   return (
-    <Box>
-
-      <Tabs value={value} onChange={handleChange} sx={{
-        width: 1,
-        background: 'Gainsboro',
-        borderTopLeftRadius: '8px',
-        borderTopRightRadius: '8px',
-        }}>
-        <Tab label="Ongoing" {...tabControl(0)} sx={{ width: '50%'}}></Tab>
-        <Tab label="Completed" {...tabControl(1)} sx={{ width: '50%'}}></Tab>
+    <Box sx={{  }} >
+      <Tabs value={value} onChange={handleChange} sx={{ width: 1, background: '#2e2e2e' }}>
+        <Tab label="Ongoing" {...tabControl(0)} sx={{ width: '50%', color: 'white'}}></Tab>
+        <Tab label="Completed" {...tabControl(1)} sx={{ width: '50%', color: 'white'}}></Tab>
       </Tabs>
       <TabPanel value={value} index={0}>
         <Divider sx={{ background: 'black' }}></Divider>
