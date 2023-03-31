@@ -1,16 +1,17 @@
 import { Divider, List, } from "@mui/material";
 import TodoListItem from './todo-list-item.component';
-
+import './todo-list.component.css'
 export default function TodoList(props) {
   return (
-    <List className='todos-list' sx={
+    <List className="todos-list" sx={
       { 
-        backgroundColor: 'gainsboro', 
+        backgroundColor: 'transparent', 
         width: 1, 
-        height: 525, 
-        overflow: 'scroll', 
-        borderBottomLeftRadius: '8px',
-        borderBottomRightRadius: '8px',
+        overflowY: 'scroll',
+        minHeight: '400px',
+        height: '600px',
+        maxHeight: '1000px',
+        pb: '100px',
       }
     }>
 

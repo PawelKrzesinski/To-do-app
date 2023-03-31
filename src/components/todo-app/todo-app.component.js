@@ -8,7 +8,9 @@ import TodoTabs from '../todo-tabs/todo-tabs.component';
 import * as themeProvider from '../theme-provider.component';
 import HamburgerMenu from '../todo-hamburger-menu/todo-hamburger-menu.component';
 import { Box } from '@mui/system';
+
 export default function TodoApp() {
+  
   const themes = themeProvider.spacing;
   const todosInitialState = {
     todo: {
@@ -52,20 +54,18 @@ export default function TodoApp() {
   const clearInput = () => {
     todoInput.current.value = '';
   }
-  
+
 
 
   return (
     <div className="content">
-      <Card sx={{ position: 'relative', width: 450, height: 850, backgroundColor:"rgb(200, 200, 200)", display: 'flex', flexDirection: 'column', boxShadow: 2, borderRadius: 5 }}>
-        <CardContent sx={{ backgroundColor: 'white', margin: themes.spacing(5, 5, 3), borderRadius: 2, alignSelf: 'center', minWidth: 400, minHeight: 700, '& .MuiList-root': { mx: 0}}}>
-        <Box sx={{ display: 'flex', justifyContent: 'center', width: 1, minWidth: 350}}>
-          <Typography sx={{ textAlign:'center', background: 'white', fontSize: '28px' }} >Today Tasks</Typography>
-          <HamburgerMenu todosState={todosState} setTodosState={setTodosState}></HamburgerMenu>  
-        </Box>
-        <TodoTabs todosState={todosState} setTodosState={setTodosState}/>
-        </CardContent>
-        <TodoInput todosState={todosState} setTodosState={setTodosState} todoInput={todoInput}/>
+      <Card sx={{ width: 1, height: 1, display: 'flex', flexDirection: 'column', mb: '0px',   backgroundColor: '#3a3d42', borderRadius: 0 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', width: 1, backgroundColor: '#1f1f1f' }}>
+            <Typography sx={{ textAlign:'center', fontSize: '28px', color: 'white', ml: themes.spacing(2) }}>Today Tasks</Typography>
+            <HamburgerMenu todosState={todosState} setTodosState={setTodosState}></HamburgerMenu>  
+          </Box>
+          <TodoTabs todosState={todosState} setTodosState={setTodosState}/>
+          <TodoInput todosState={todosState} setTodosState={setTodosState} todoInput={todoInput}/>
       </Card>
     </div>
   )
