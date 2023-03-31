@@ -17,11 +17,11 @@ export default function TodoInput(props) {
       addToDo(e)
     }
   }
-
+  const characterLimit = 255;
   return (
     <CardActions sx={
       { 
-        padding: themes.spacing(5), 
+        padding: themes.spacing(5, 5, 0), 
         width: 1,
         backgroundColor: '#1f1f1f',
         mt: '16px',
@@ -32,7 +32,8 @@ export default function TodoInput(props) {
         id="outlined-controlled" 
         label="Add your note here..." 
         variant="standard" 
-        inputProps={{ maxLength: 50 }}
+        inputProps={{ maxLength: 255 }}
+        helperText={`${props.todosState.todo.name.length}/${characterLimit}`}
         onChange={handleInput} 
         inputRef={props.todoInput} 
         onKeyDown= {(e) => {addTodoOnEnter(e)}}
@@ -48,6 +49,8 @@ export default function TodoInput(props) {
               padding: 1,
               height: 34,
               backgroundColor: '#50555c',
+              borderTopLeftRadius: 5,
+              borderBottomLeftRadius: 5,
             },
             '& .MuiOutlinedInput-notchedOutline': {
               borderBottomRightRadius: 0,
@@ -56,10 +59,9 @@ export default function TodoInput(props) {
             '& .MuiInputLabel-shrink': {
               color: 'white !important',
             },
-            '& .MuiFormControl-root': {
-              borderTopLeftRadius: 5,
-              borderBottomLeftRadius: 5,
-            },
+            '& .MuiFormHelperText-sizeMedium': {
+              color: 'white',
+            }
           }
           }/>
       <Button variant="contained" onClick={(e) => addToDo(e)}
@@ -69,6 +71,7 @@ export default function TodoInput(props) {
               fontSize: 40,
               borderBottomLeftRadius: 0,
               borderTopLeftRadius: 0,
+              alignSelf: 'flex-start'
       }}>+</Button>
     </CardActions>
   )
