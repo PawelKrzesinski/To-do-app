@@ -39,10 +39,10 @@ export default function TodoTabs(props) {
   }
 
   return (
-    <Box sx={{  }} >
+    <Box >
       <Tabs value={value} onChange={handleChange} sx={{ width: 1, background: '#2e2e2e' }}>
-        <Tab label="Ongoing" {...tabControl(0)} sx={{ width: '50%', color: 'white'}}></Tab>
-        <Tab label="Completed" {...tabControl(1)} sx={{ width: '50%', color: 'white'}}></Tab>
+        <Tab label="Ongoing" {...tabControl(0)} sx={{ width: '50%', maxWidth: '50%', color: 'white'}}></Tab>
+        <Tab label="Completed" {...tabControl(1)} sx={{ width: '50%', maxWidth: '50%', color: 'white'}}></Tab>
       </Tabs>
       <TabPanel value={value} index={0}>
         <Divider sx={{ background: 'black' }}></Divider>
