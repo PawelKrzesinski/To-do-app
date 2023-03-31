@@ -34,13 +34,13 @@ export default function TodoListItem(props) {
   }
   return (
     <ListItem sx={{p: 0 }}>
-      <ListItemText primary={props.todo.name} sx={{ p: 1, my: '5px', minHeight: 34, color: 'white' }}></ListItemText>
+      <ListItemText primary={props.todo.name} sx={{ p: 1, my: '5px', minHeight: 34, color: 'black', wordBreak: 'break-all' }}></ListItemText>
        {props.todo.completed === false &&
-          <div>
+          <div style={{ display: 'flex'}}>
             <IconButton aria-label='complete' size='large' sx={{ borderRadius: 0, color: 'rgb(0, 180, 0)'}} onClick={(e) => completeOne(e, props.todo)}>
               <DoneIcon />
             </IconButton>
-            <IconButton aria-label="delete" size='large' sx={{ borderRadius: 0, color: 'white'}} onClick={(e) => removeOne(e, props.todo)}>
+            <IconButton aria-label="delete" size='large' sx={{ borderRadius: 0, color: 'black'}} onClick={(e) => removeOne(e, props.todo)}>
               <DeleteIcon />
             </IconButton>
           </div>

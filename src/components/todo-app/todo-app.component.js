@@ -10,7 +10,7 @@ import HamburgerMenu from '../todo-hamburger-menu/todo-hamburger-menu.component'
 import { Box } from '@mui/system';
 
 export default function TodoApp() {
-  
+
   const themes = themeProvider.spacing;
   const todosInitialState = {
     todo: {
@@ -59,7 +59,7 @@ export default function TodoApp() {
 
   return (
     <div className="content">
-      <Card sx={{ width: 1, height: 1, display: 'flex', flexDirection: 'column', mb: '0px',   backgroundColor: '#3a3d42', borderRadius: 0 }}>
+      <Card sx={{ width: 1, height: 1, display: 'flex', flexDirection: 'column', mb: '0px',   backgroundColor: 'gainsboro', borderRadius: 0 }}>
           <Box sx={{ display: 'flex', justifyContent: 'center', width: 1, backgroundColor: '#1f1f1f' }}>
             <Typography sx={{ textAlign:'center', fontSize: '28px', color: 'white', ml: themes.spacing(2) }}>Today Tasks</Typography>
             <HamburgerMenu todosState={todosState} setTodosState={setTodosState}></HamburgerMenu>  
